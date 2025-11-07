@@ -1,38 +1,227 @@
+/* Font Classes */
+.gaegu-regular {
+  font-family: "Gaegu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.gaegu-bold {
+  font-family: "Gaegu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f5f5f5;
+  font-family: "Gaegu", sans-serif;
+}
+
 .App {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #e8eaf6 0%, #f5f5f5 100%);
+}
+
+/* Query Input Section */
+.query-input-container {
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(139, 149, 201, 0.1);
+}
+
+.app-title {
+  font-size: 2.5rem;
+  color: #28587b;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.query-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: 2px solid #8B95C9;
+  border-radius: 12px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.3s ease;
+  background-color: #fafafa;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.query-textarea:focus {
+  border-color: #6b7ab8;
+  background-color: white;
+}
+
+.query-textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.query-button {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1.3rem;
+  color: white;
+  background-color: #28587b;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.query-button:hover:not(:disabled) {
+  background-color: #6b7ab8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 149, 201, 0.3);
+}
+
+.query-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.query-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Response Grid */
+.response-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .response-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@media (min-width: 1200px) {
+  .response-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* LLM Response Card */
+.llm-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(139, 149, 201, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.llm-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(139, 149, 201, 0.25);
+}
+
+.llm-header {
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+  color: #5a6aa0;
+  background-color: #f8f9ff;
+  border-left: 5px solid #8B95C9;
+  border-bottom: 2px solid #e8eaf6;
+}
+
+.llm-response {
+  padding: 1.5rem;
+  min-height: 200px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Loading State */
+.loading-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 200px;
+  color: #8B95C9;
 }
 
-.App-link {
-  color: #61dafb;
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e8eaf6;
+  border-top: 4px solid #8B95C9;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-state p {
+  font-size: 1.1rem;
+}
+
+/* Response Text */
+.response-text {
+  font-family: "Gaegu", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #5a6aa0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+  background-color: #fafafa;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 3px solid #8B95C9;
+}
+
+.response-metadata {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #8B95C9;
+  text-align: right;
+}
+
+.placeholder-text {
+  color: #a8b0d9;
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Scrollbar Styling */
+.llm-response::-webkit-scrollbar {
+  width: 8px;
+}
+
+.llm-response::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.llm-response::-webkit-scrollbar-thumb {
+  background: #8B95C9;
+  border-radius: 4px;
+}
+
+.llm-response::-webkit-scrollbar-thumb:hover {
+  background: #6b7ab8;
 }
