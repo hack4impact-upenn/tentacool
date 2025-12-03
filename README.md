@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+**SquidLLM Technical Description**  
+---
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Dhruv Gupta 							      	        		   
 
-## Available Scripts
+**Project Proposal**
 
-In the project directory, you can run:
+We would like to develop infrastructure to assist with research into LLMs. We are working on jail-breaking LLMs and would like to be able to take a prompt and easily test it on 40 LLMs, get back the responses, and then run one quick round of evaluation on them. We want to also be able to annotate prompts, add notes to responses, and log all annotated prompts onto a database.
 
-### `npm start`
+We would also like to build out a dashboard that makes it easy to search for prompts and responses, or also to search/see stats by LLM.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Proposed Technical Stack**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* **HuggingFace Backend**: We will intend to build a Python backend deployed through a HuggingFace project  
+* **Vercel:** The frontend will be deployed on Vercel  
+* **Supabase:** An RDS built off of Supabase  
+* **React:** The frontend will be all react. The app has been created using npx create-react-app to begin with.  
+* **LLM APIs**   
+  * OpenAI  
 
-### `npm test`
+**Backend Setup**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+We have begun by creating a new react project. In the root of that, we have created a huggingface space intialized as a blank Docker setup.
 
-### `npm run build`
+**RDS Model**  
+   
+Prompt Table: ID, Text, Note (Nullable)  
+Response Table: ID, Prompt ID, LLM, Response, Jailbroken (Boolean), Note (Nullable)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Backend Development Steps**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+These steps are to be followed by Cursor Agent running Claude 4 Sonnet. Each step should only be completed one at a time, and after each step is completed, the readme file should be updated accordingly. Do NOT go ahead at all and do not set up extra steps in advance
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Build out the basic communication with the database, and ways to insert elements into the database or read elements into the database  
+2. Build out system to send a query to each of the API providers  
+3. Build out an asynch system to send out a lot of API responses at the same time and intelligently/concurrently get back their responses  
+4. Build out a way to test with a single LLM (4.1 nano) if a large batch of responses has been jailbroken or not (returning a JSON of yes or no)  
+5. Build out a way to accept and add a batch of responses to the database
 
-### `npm run eject`
+**Frontend Development Steps**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Create a file directory with images, components, data and pages. Create a global API variable that is set and can be edited for where the server is hosted  
+2. In our data, define a json file which has the relevant models grouped by API Provider  
+3. Develop a header (3 tabs: home, analysis, top statistics)  
+4. Develop the home tab which looks like a chat box landing page with a checkbox list of models we can use underneath to select which ones to run it on; default should be all selected  
+5. Develop the other views of the home tab   
+   1. First view: described above  
+   2. Second view: LLM responses received, users should be unable to interact with the responses, and their status should say (“Checking jailbroken” \+ turning settings wheel)  
+   3. Third view: after we’ve done our initial scan with 4.1 nano, with a Yes/No toggle for each replacing “Checking jailbroken” with the LLM’s response set, as well as a way to add notes both to the prompt at the top and to each individual response. There should be a button at the bottom to log to the database, after which we should give a confirmation message, wait 2 seconds, and refresh back to the first view  
+6. Develop the analysis tab, which should let you query the database by any of the columns  
+7. Develop the statistics tab, which should display some of the key insights (i.e. prompts which worked the best and worst, LLMs which worked the best and worst, anything else you think is relevant)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Frontend Considerations**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. We want this website to be heavily influenced by the aesthetics of Notion. Our team colors are sky blue, moss green, and gray. We should use matte colors, radial box shadows, and minimalistic aesthetics.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Necessary Keys**
+RDS_LOGIN=postgresql... (set on HuggingFace)
+OPENAI_KEY=sk.... (set on HuggingFace)
