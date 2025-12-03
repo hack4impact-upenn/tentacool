@@ -1,0 +1,245 @@
+/* Analysis Page Styles - Notion-inspired design */
+
+.analysis-page {
+  padding: 32px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: calc(100vh - 64px);
+}
+
+.analysis-container {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.analysis-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 24px 0;
+  letter-spacing: -0.5px;
+}
+
+/* Query Controls */
+.query-controls {
+  margin-bottom: 32px;
+}
+
+.query-type-selector {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.query-type-selector label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.query-type-selector input[type="radio"] {
+  cursor: pointer;
+}
+
+.query-type-selector input[type="radio"]:checked + span {
+  color: #0ea5e9;
+  font-weight: 500;
+}
+
+.filters-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #475569;
+}
+
+.filter-group input,
+.filter-group select {
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #ffffff;
+  color: #2d3748;
+  transition: border-color 0.2s;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+.query-btn {
+  padding: 12px 24px;
+  background: #0ea5e9;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(14, 165, 233, 0.2);
+}
+
+.query-btn:hover:not(:disabled) {
+  background: #0284c7;
+  box-shadow: 0 4px 8px rgba(14, 165, 233, 0.3);
+}
+
+.query-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Results Section */
+.results-section {
+  margin-top: 32px;
+}
+
+.results-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 16px 0;
+}
+
+.results-table {
+  overflow-x: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.results-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.results-table thead {
+  background: #f8fafc;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.results-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.results-table td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #475569;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.results-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.text-cell {
+  max-width: 400px;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+.note-cell {
+  max-width: 200px;
+  word-wrap: break-word;
+  color: #64748b;
+  font-style: italic;
+}
+
+.jailbroken-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #fee2e2;
+  color: #dc2626;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.not-jailbroken-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #dcfce7;
+  color: #16a34a;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.view-responses-btn {
+  padding: 6px 12px;
+  background: #f1f5f9;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  color: #64748b;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-responses-btn:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+.no-results {
+  text-align: center;
+  padding: 48px;
+  color: #94a3b8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .analysis-page {
+    padding: 16px;
+  }
+  
+  .analysis-container {
+    padding: 20px;
+  }
+  
+  .filters-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .results-table {
+    font-size: 12px;
+  }
+  
+  .results-table th,
+  .results-table td {
+    padding: 8px;
+  }
+}
